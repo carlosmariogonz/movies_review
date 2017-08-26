@@ -1,8 +1,13 @@
 <?php
+    // Desactivar toda notificación de error
+    error_reporting(0);
+
     $apikey = "c94778cf35d2430c0af1511ee281efad";
     $byactor = array_key_exists('byactor', $_GET) ? $_GET['byactor'] : null;
     $personid = array_key_exists('personid', $_GET) ? $_GET['personid'] : null;
     $movieid = array_key_exists('movieid', $_GET) ? $_GET['movieid'] : null;
+    $actorflag = array_key_exists('actor', $_GET) ? $_GET['actor'] : null;
+    $movieflag = array_key_exists('movie', $_GET) ? $_GET['movie'] : null;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,10 +16,51 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
+        <script>
+            function goBack() {
+                window.history.back()
+            }
+        </script>
+
         <style type="text/css">
+
+    .navbar-toggle{
+        display:none;
+    }
+
+    .navbar-default {
+        background-color: #f8f8f8;
+        border-color: #e7e7e7;
+    }
+
+        button#goback {
+            height: 40px !important;
+            width: 100px !important;
+            border-radius: 6px;
+            cursor: default;
+            font-family: arial,sans-serif;
+            font-size: 13px;
+            font-weight: bold;
+            margin: 11px 4px;
+            min-width: 54px;
+            padding: 0 16px;
+            text-align: center;
+            border: 1px solid #c6c6c6;
+            box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+            color: #222;
+            background-color: #f8f8f8;
+            background-image: -webkit-linear-gradient(top,#f8f8f8,#f1f1f1);
+
+            }
+
+            .panel-body-list {
+               width: 50%;
+                float: left;
+            }
             #mov_poster{
                 float: left; 
                 padding-right: 30px;
+        padding-bottom: 20px;
             }
             form#searchbox {
                 text-align: center;
@@ -25,11 +71,27 @@
                 width: 80%;
                 height: 54px;
                 border-radius: 6px;
+                padding-left: 10px;
             }
             input.submit-button {
                 height: 54px;
                 width: 10%;
                 border-radius: 6px;
+               border-radius: 6px;
+                cursor: default;
+                font-family: arial,sans-serif;
+                font-size: 13px;
+                font-weight: bold;
+                margin: 11px 4px;
+                min-width: 54px;
+                padding: 0 16px;
+                text-align: center;
+                border: 1px solid #c6c6c6;
+                box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+                color: #222;
+                background-color: #f8f8f8;
+                background-image: -webkit-linear-gradient(top,#f8f8f8,#f1f1f1);
+
             }
             #serchbox{    
                 text-align: center;    
@@ -38,6 +100,7 @@
 
             body {
                 background-color: #B1B1B1;
+        font-size:12px !important;
             }
 
             #main-container {
@@ -54,6 +117,8 @@
             table {
                 font-family: arial, sans-serif;
                 border-collapse: collapse;
+                width: 100%;
+                float: left;
             }
 
             td {
@@ -73,6 +138,25 @@
                 background-color: #dddddd;
             }
 
+        div#trailer {
+            float: left;
+        width: 40px;
+            padding-left: 0px;
+            padding-top: 0px;
+        }
+
+            #logo_img {
+                vertical-align: middle;
+                width: 40%;
+                height: 40%;
+                text-align: center;
+            }
+
+            div#logo {  
+                align-items: center;
+                text-align: center;
+            padding-top: 8%;
+            }
         </style>
 
         <title>TMDB</title>
@@ -97,7 +181,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">TMDB</a>
+                    <a class="navbar-brand" href="#">TMDB: Search Movie Engine by Actor</a>
                 </div>
                 
                 <div id="navbar" class="navbar-collapse collapse">
@@ -109,9 +193,16 @@
             <!-- Container -->
 
             <div id="main-container" class="container">
+                <div id="logo">
+                    <a href="index.php"><img id="logo_img" src="./images/logo.jpg"></a>
+                 </div>       
                    <form action="index.php" id="searchbox"  method="GET">
                         <input name='byactor' class='border-radius: 6px;' id='byactor' />
-                        <input class="submit-button" type="submit" value="Submit" />
+                        <input class="submit-button" type="submit" value="Go" /> 
+                        <div id='options'>                        
+                            <input type="checkbox" name="actor" value="1" checked /> Search by Actor<br>
+                            <input type="checkbox" name="movie" value="1"n/> Search by Movie<br>
+                         </div>  
                    </form> 
 
             <?php

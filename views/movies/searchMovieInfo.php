@@ -9,6 +9,11 @@
                 <div id="mov_poster">
                     <image src="http://image.tmdb.org/t/p/w185/'.$movie->get('poster_path').'"> 
                 </div>    
+                    <div id="trailer">    
+                        <iframe width="265" height="278" src="https://www.youtube.com/embed/'.$movie->getTrailer().'">
+                        </iframe>   
+                     </div>   
+
                     <table>
                         <tr>
                             <th>Field</th>
@@ -35,10 +40,6 @@
                             <td>'.$movie->get('vote_average').'</td>
                         </tr>
                     </table> 
-                    <div id="trailer">    
-                        <iframe width="420" height="345" src="https://www.youtube.com/embed/'.$movie->getTrailer().'">
-                     </div>   
-                    </iframe>   
                 </div>
             </div>';
 ?>
