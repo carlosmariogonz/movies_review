@@ -15,9 +15,9 @@ class Person{
     private $_data;
 
     /**
-     * 	Construct Class
+     *  Construct Class
      *
-     * 	@param array $data An array with the data of the Person
+     *  @param array $data An array with the data of the Person
      */
     public function __construct($data) {
         $this->_data = $data;
@@ -59,6 +59,17 @@ class Person{
         }
 
         return $movieRoles;
+    }
+
+    public function  orderRoles($arrayRoles){
+        function my_sort($a,$b)
+        {
+            if ($a->getMovieReleaseDate()==$b->getMovieReleaseDate()) return 0;
+            return ($a->getMovieReleaseDate()>$b->getMovieReleaseDate())?-1:1;
+        }
+
+        usort($arrayRoles,"my_sort");
+        return $arrayRoles;
     }
 
 

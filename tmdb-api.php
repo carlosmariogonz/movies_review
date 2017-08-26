@@ -117,7 +117,7 @@ class TMDB {
 	 */
 	private function _call($action, $appendToResponse = '') {
 
-		$url = self::_API_URL_.$action .'?api_key='. $this->getConfig()->getAPIKey() .'&language='. $this->getConfig()->getLang() .'&append_to_response='. implode(',', (array) $appendToResponse) .'&include_adult='. $this->getConfig()->getAdult();
+		$url = self::_API_URL_.$action .'?api_key='. $this->getConfig()->getAPIKey() .'&sort_by=date.desc'.&language='. $this->getConfig()->getLang() .'&append_to_response='. implode(',', (array) $appendToResponse) .'&include_adult='. $this->getConfig()->getAdult();
 		//var_dump($url);
 		if ($this->getConfig()->getDebug()) {
 			echo '<pre><a href="' . $url . '">check request</a></pre>';
