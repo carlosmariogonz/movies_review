@@ -10,10 +10,13 @@
                     <ul>';
 
     $roles = $person->getMovieRoles();
+    $roles = $person->orderRoles($roles);
+
     foreach($roles as $rol){
 
+        //var_dump($rol);
        echo '<li><a href="index.php?movieid='. 
-            $rol->get('id') .'">'. $rol->get('title') .'</a></li>';
+            $rol->get('id') .'">'. $rol->get('title') .' ('.$rol->get('release_date').')'.'</a></li>';
 
 
     }
